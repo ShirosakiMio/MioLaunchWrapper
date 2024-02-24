@@ -1,6 +1,5 @@
 package mio;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
@@ -19,29 +18,13 @@ public class Wrapper {
     }
 
     public static String getStackTraceInfo(Throwable e) {
-        StringWriter sw = null;
-        PrintWriter pw = null;
-        try {
-            sw = new StringWriter();
-            pw = new PrintWriter(sw);
+        try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
             e.printStackTrace(pw);
             pw.flush();
             sw.flush();
             return sw.toString();
         } catch (Exception ex) {
-            return "error/发生错误";
-        } finally {
-            if (sw != null) {
-                try {
-                    sw.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-            if (pw != null) {
-                pw.close();
-            }
+            return "Error/发生错误:"+ ex;
         }
-
     }
 }

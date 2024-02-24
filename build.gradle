@@ -15,7 +15,6 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Add-Opens': 'java.base/jdk.internal.loader',
                 'Main-Class': 'mio.Wrapper'
         )
     }

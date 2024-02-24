@@ -14,6 +14,7 @@ public class Wrapper {
             main.invoke(null, new Object[]{args});
         } catch (Throwable e) {
             System.out.println(getStackTraceInfo(e));
+            System.exit(1);
         }
     }
 
